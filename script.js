@@ -34,7 +34,7 @@ function generatePasswordCriteria(){
   passwordCriteria.includeLower = confirm("Do you want lower case letters in your password?");
   passwordCriteria.includeNums = confirm("Do you want numbers in your password?");
   passwordCriteria.includeSpecial = confirm("Do you want special characters in your password?");
-  // This makes sure that at least one character type is selected
+  // This if statment makes sure that at least one character type is selected
   if(!passwordCriteria.includeUpper && !passwordCriteria.includeLower && !passwordCriteria.includeNums && !passwordCriteria.includeSpecial){
     alert("Please select at least one type of character to include")
     generatePasswordCriteria()
@@ -46,16 +46,34 @@ function generatePasswordCriteria(){
 function createPassword (){
   for(let i=0; i<passwordCriteria.length; i++){
       let charSelector = Math.floor(Math.random() * 4)
-      // if(charSelector === 0 && passwordCriteria.includeUpper){
-
-      // }
+      if(charSelector === 0 && passwordCriteria.includeUpper){
+        let nextCharIndex = Math.floor(Math.random() * upper.length);
+        finalPassword += upper[nextCharIndex];
+      }
+      else if(charSelector === 1 && passwordCriteria.includeLower){
+        let nextCharIndex = Math.floor(Math.random() * lower.length);
+        finalPassword += lower[nextCharIndex];
+      }
+      else if(charSelector === 2 && passwordCriteria.includeNums){
+        let nextCharIndex = Math.floor(Math.random() * nums.length);
+        finalPassword += nums[nextCharIndex];
+      }
+      else if(charSelector === 3 && passwordCriteria.includeSpecial){
+        let nextCharIndex = Math.floor(Math.random() * special.length);
+        finalPassword += special[nextCharIndex];
+      }else{
+        i--
+      }
+          
 
   }
 }
 
 function writePassword() {
+  finalPassword = "";
   generatePasswordCriteria();
   createPassword()
+  console.log(finalPassword)
 
   
   var passwordText = document.querySelector("#password");
