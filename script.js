@@ -12,7 +12,6 @@ let numsIncluded = false;
 let specialIncluded = false;
 
 // Define the initial password criteria in the gloabal scope
-// passwordCriteria can be changed an called in any of the functions
 let passwordCriteria = {
     length: 0,
     includeUpper: false,
@@ -63,7 +62,6 @@ function verifyPassword(){
     createPassword()
   }
 }
-
 
 
 function createPassword (){
